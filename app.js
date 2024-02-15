@@ -9,7 +9,7 @@ const unlink = require('node:fs').unlink
 const cors = require('cors')
 const im = require('imagemagick');
 
-const db = require('better-sqlite3')('./db/standrewsdirectory.db')
+const db = require('better-sqlite3')('./db/directory.db')
 const bodyParser = require('body-parser')
 const app = express()
 
