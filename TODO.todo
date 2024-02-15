@@ -1,0 +1,20 @@
+* The edit page (index.html)
+** Add password protection before downloading stuff
+*** Use the hash code in hash.js to generate a hash of the entered password, and compare
+*** the hash of cantaloupe with seed=0 is 8599368505905664, save this as a cookie and in auth.js
+*** Password should protect against staff and edit
+** Merge the javascripts together; we only need one Load command
+** Want a way to change the passwords from the website
+* Directory page
+** DONE Add an edit icon to go to the edit page
+** DONE Restyle the header to be smaller?
+** Require a separate password to create the page.
+* Setup
+** Create a README.md of what needs to be done to get it running
+** npm has a "package" command of some sort
+** A command-line script to set things up
+
+* Staff page should be stored as a text file
+** Organize as "New section" etc
+** TODO Add "Move up" and "Move down" buttons
+* Rename database from standrewsdirectory.db

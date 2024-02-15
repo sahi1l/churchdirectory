@@ -1,0 +1,86 @@
+:root {
+    --headerheight: 60px;
+    --headercolor: #aef;
+header {
+    height: var(--headerheight);
+    background-color: var(--headercolor);
+    position: fixed;
+    width: 100vw;
+    top: 0px;
+    left: 0px;
+    border-bottom: 3px black outset;
+    z-index: 3;
+}
+header>h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+main,section {
+    margin-top: calc(10px + var(--headerheight));
+}
+header>#buttons {
+    float: right;
+    margin-top: auto;
+    margin-bottom: 0px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    &>.mode {
+	font-family: sans-serif;
+	font-size: 1rem;
+	border-radius: 10px;
+	color: white;
+	font-variant: small-caps;
+	text-decoration: none;
+	padding: 5px;
+	margin: 5px;
+	background-color: grey;
+	border: 2px black outset;
+	bottom: 0px;
+	&.active {
+	    background-color: #888;
+	    color: blue;
+	}
+    }
+}
+}
+header>#buttons>.mode.current {
+    color: var(--headercolor);
+    background-color: #444;
+    text-decoration: underline;
+}
+header>#buttons>.mode:hover {
+    background-color: #444;
+}
+header {
+    font-family: serif;
+}
+header label:has(#password) {
+    margin-bottom: 10px;
+    &>#password {
+	background-color: #faa;
+    }
+    &+#logout {
+	display: none;
+	margin-bottom:10px;
+    }
+}
+header label:has(#password.right) {
+    display: none;
+    &+#logout {
+	display: block;
+    }
+}
+
+
+#saving {
+    opacity: 0;
+    transition: opacity 2s ease-in;
+    display: inline;
+    color: red;
+}
+#saving.show {
+    opacity: 1;
+    transition: opacity 2s ease-out;
+}

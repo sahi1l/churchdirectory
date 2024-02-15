@@ -1,0 +1,172 @@
+section#staffPanel {
+    & td {position: relative;}
+    /* The switch - the box around the slider */
+    & #entry {
+	--size: 20px; /*size of the checkboxes*/
+	--gap: 2px;
+	--width: calc(var(--size) * 2 + 2*var(--gap));
+	--inpwidth: 12rem;
+	--switchcolor: #2196F3;
+    }
+    & .switch {
+	--height: calc(var(--size) + 2*var(--gap));
+	box-sizing: border-box;
+	position: relative;
+	display: inline-block;
+	width: var(--width);
+	height: var(--height);
+	margin-right: var(--gap);
+    }
+    & .row>input {margin-inline: var(--gap);}
+    /* Hide default HTML checkbox */
+    & .switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+    }
+    
+    /* The slider */
+    & .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+	border-radius: var(--size);
+    }
+    
+    & .slider:before {
+	position: absolute;
+	content: "";
+	height: var(--size);
+	width: var(--size);
+	left: var(--gap);
+	bottom: var(--gap);
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+	border-radius: 50%;
+    }
+    
+    & input:checked + .slider {
+	background-color: var(--switchcolor);
+    }
+    
+    & input:focus + .slider {
+	box-shadow: 0 0 1px var(--switchcolor);
+    }
+    
+    & input:checked + .slider:before {
+	transform: translateX(var(--size));
+    }
+    
+    
+    & #entry {
+	display: flex;
+	flex-direction: column;
+    }
+    
+    & #entry .row {
+	width: 100%;
+	display: flex;
+	padding-block: 2px;
+    }
+    & #entry .row>input {width: var(--inpwidth);}
+    
+    & #entry .row>input.sectionname {
+	display: none;
+	width: calc(var(--inpwidth) * 3 + var(--gap) * 4);
+	font-weight: bold;
+	color: white;
+	background-color: grey;
+    }
+    & #entry .row:has(input:checked)>input.sectionname {
+	display:block;
+    }
+    & .row:has(input:checked)>input {
+	display: none;
+    }
+    & .email {
+	font-family: monospace;
+    }
+    & .row.header {
+	align-items: flex-end;
+    }
+    & .row.header>span:first-child {
+	width: var(--width);
+    }
+    & .row.header>span {
+	width: var(--inpwidth);
+	text-align: center;
+    }
+    & .row.header>span {
+	font-weight: bold;
+    }
+    & .sectionQ {
+	box-sizing: content-box;
+	border: 2px transparent solid;
+    }
+    & .sectionQ:has(input:focus) {
+	border: 2px blue solid;
+    }
+    & .pos {
+	font-size: 0.5rem;
+    }
+    & .row>button {
+	height: 50%;
+	margin: 2px;
+    }
+    & .row:has(input:focus) {
+	background-color: #ddf;
+    }
+    
+    & #info {
+	background-color: #ddd;
+	border: 2px inset black;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	width: fit-content;
+    }
+    
+    & #info>.entry {
+	width: fit-content;
+	padding: 5px;
+	&>label>span {
+	    display: inline-block;
+	    min-width: 7em;
+	    text-align: right;
+	    vertical-align: top;
+	    margin-top: 4px;
+	}
+	&>label {
+	    font-weight: bold;
+	}
+	input {
+	    width: 20rem;
+	}
+	textarea {
+	    width: 20rem;
+	}
+    }
+    & h2 {margin-bottom: 0px;}
+    & .assets {
+	display: flex;
+	justify-content: space-around;
+    }
+    & .assets label {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+    }
+    & .assets img {
+	height: 80px;
+	border: 1px solid black;
+    }
+}

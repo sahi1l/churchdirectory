@@ -1,0 +1,9 @@
+section {
+    visibility: hidden;
+    &.active {
+	visibility: visible;
+	position: absolute;
+	top: 0px;
+	
+    }
+}

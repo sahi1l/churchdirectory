@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sometype+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&display=swap');
+:root {
+    --width: 6.5in;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    
+    background-color: #ddd;
+    width: 100%;
+    z-index: 3;
+    & h1 {
+	font-size: 2rem;
+	margin: 0px;
+    }
+    & #editbutton {
+	float: right;
+	padding: 5px;
+	font-family: sans-serif;
+	font-size: 1rem;
+	border-radius: 10px;
+	color: white;
+	font-variant: small-caps;
+	text-decoration: none;
+	padding: 5px;
+	margin: 5px;
+	background-color: grey;
+	border: 2px black outset;
+    }
+}
+@media print {
+    header {display: none;}
+    #printtype {display: none;}
+    body {margin-top: 0px;}
+}
+body {
+    margin-top: 20px;
+}
+section#dirPanel>#content {
+    font-family: "Playfair Display","serif";
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+
+    &.booklet {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+    }
+    & dir-page {
+	display: grid;
+	grid-template-rows: repeat(4, 1fr);
+	width: 7in;
+	height: 9in;
+	margin: 0.5in 0in;
+	break-after: page;
+	break-inside: avoid;
+	page-break-after: page;
+	page-break-inside: avoid;
+	position: relative;
+    }
+    & dir-page:last-child {
+	break-after: auto;
+    }
+    & family-card {
+	width: var(--width);
+	padding: 10px;
+	height: 2in;
+	border-top: 1px solid black;
+    }
+    & .empty family-card {
+	border: 0px;
+    }
+    & family-card>div {
+	display: flex;
+	flex-direction: column;
+	max-width: 75%;
+    }
+    & img.photo {
+	max-height:80%;
+	max-width:50%;
+	float:right;
+	border: 1px solid black;
+	grid-column-start: 2;
+	grid-column-end: 2;
+	margin: 10px;
+    }
+
+    & .name {
+	font-size: 150%;
+    }
+    & .children {
+	font-style: italic;
+	font-size: 120%;
+    }
+    & .last {
+	font-weight: 900;
+    }
+    & .contact {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-self:stretch;
+    }
+    & .address {
+	margin: 5px 0px;
+    }
+    & .email,.Cemail {
+	font-family: "Sometype Mono",
+                     monospace;
+	font-size: 16px;
+    }
+    & .Crow {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+    }
+    & .Cname {margin-right: 1ex;
+              font-weight: 900;
+	     }
+    & .Cname:after {
+	content: ":";
+    }
+    & .Cphone {margin-right: 1ex;}
+    & .Cphone:not(:empty):after {
+	content: ",";
+    }
+    & dir-page.empty {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	background: url("assets/interstitial.png");
+	background-position: 50% 50%;
+	background-repeat:no-repeat;
+    }
+    & footer {
+	text-align: center;
+	align-self: end;
+	width: var(--width);
+    }
+    & dir-page.empty footer {
+	align-self: auto;
+    }
+    & .staff footer {
+	display: none;
+    }
+    & .cover {
+	text-align: center;
+	margin-top: 0.1in;
+    }
+    & .cover>h1 {
+	font-size: 2.5em;
+	max-width: 40em;
+    }
+    & .cover>.subtext {
+	display: flex;
+	flex-direction: column;
+	&>.hours {
+	    font-style: italic;
+	    text-align: center;
+	    display: flex;
+	    justify-content: center;
+	}
+    }
+    & .cover>div {display: inline-block;}
+    .cover>img {
+	margin: auto;
+	max-width: 90%;
+    }
+    & .staff {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+    }
+    & .staff table {
+	width: var(--width);
+    }
+    & .staff>h2 {
+	margin: 0px;
+    }
+    & .staff caption {
+	font-size: 2rem;
+	font-weight: bold;
+    }
+    & .staff td {
+	min-width: calc(var(--width) / 4);
+	overflow: hidden;
+	white-space: nowrap;
+	//border-bottom: 1px black dotted;
+    }
+    & .staff tr {
+	position: relative;
+    }
+    
+    & .staff td.leaders {
+	background: linear-gradient(to right,black 0%, black 30%,white 30%,white 100%);
+	background-size: 5px 1px;
+	background-repeat: repeat-x;
+	background-position: right 60%;
+    }
+    & .staff hr {
+	position: absolute;
+	width: calc(var(--width)*0.9);
+	border-top: 0px grey dotted;
+	top: 5px;
+	z-index: -1;
+    }
+    & .staff .title {
+	font-weight: bold;
+    }
+    & .staff .name {
+	font-size: 1rem;
+    }
+	    
+    & .staff td>span {
+	background-color: white;
+	padding: 3px;
+    }
+    & .staff footer {display: none;}
+    & .cover footer {display: none;}
+}
+
+#printtype {
+    input {display: none;}
+    & #slider {
+	background-color: white;
+	position: relative;
+	font-size: 36px;
+	display: inline-block;
+	border: 1px solid black;
+	width: 20px;
+	height: 10px;
+	border-radius: 5px;
+	overflow: clip;
+	&>span {
+	    height: 12px;
+	    width: 10px;
+	    display: block;
+	    background-color: black;
+	    position: absolute;
+	    top: 0px;
+	    left: 0px;
+	    clip-path: circle(40% at 5px 5px);
+	    transition: left 0.2s;
+	}
+    }
+    & label:has(input:checked)>#slider>span {
+	@page {size: landscape;}
+	left: 10px;
+    }
+    & label:has(input:checked) {
+	font-weight: bold;
+    }
+    & #instructions {
+	width: 415px;
+	text-align: left;
+	word-wrap: nowrap;
+	overflow: visible;
+	font-style: italic;
+	& #single {display: block;}
+	& #book {display: none;}
+    }
+    label:has(input:checked)+#instructions {
+	& #single {display: none;}
+	& #book {display: block;}
+    }
+}
+
+/*
+#printtype {
+    position: fixed;
+    z-index: 5;
+    top: 0px;
+    width: 100%;
+    & #booklet:checked + label[for="booklet"] {
+	--light: rgba(150,150,150,0.9);
+	--dark: rgba(200,200,200,0.9);
+	&>#singlepage {
+	    color: inherit;
+	}
+	&>#book {
+	    color: white;
+	}
+	&>#instructions>#singlepage {
+	    display: none;
+	}
+	&>#instructions>#book {
+	    display: block;
+	}
+    }
+    
+    & label[for="booklet"] {
+	top: 35px;
+	left: 15px;
+	margin-left: 15px;
+	--light: rgba(200,200,200);
+	--dark: rgba(150,150,150);
+	position: absolute;
+	background-color: rgba(200,200,200,1);
+	//background: linear-gradient(to right,var(--dark) 50%,var(--light) 50%);
+	border: 1px black inset;
+	&>#singlepage {
+	    background-color: var(--dark);
+	    color: white;
+	}
+	&>#book {
+	    background-color: var(--light);
+	}
+	&>#instructions {
+	    &>#singlepage {display: block;}
+	    &>#book {display:none;}
+	}
+	&>.toggle {
+	    padding: 0px;
+	    margin: 0px;
+	    width: 100px;
+	    background-color: transparent;
+	    position: relative;
+	    z-index: 1;
+	    padding-inline: 5px;
+	}
+	&>#instructions{
+	    background-color: var(--headercolor);
+	    border: 0px;
+	    display: inline-block;
+	    padding-inline: 5px;
+	    font-style: italic;
+	}
+    }
+    & input {display: none;}
+}
+*/

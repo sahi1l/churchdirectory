@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>St. Andrew's Church Directory Database</title>
+  <link rel="icon" href="assets/favicon.png">
+<script type="module" src="js/lib/jquery.js"></script>
+<script type="module" src="js/lib/js.cookie.min.mjs"></script>
+<script type="module" src="js/password.js"></script>
+<script type="module" src="js/edit.js"></script>
+<script type="module" src="js/staff.js"></script>
+<script type="module" src="js/index.js"></script>
+<link rel="stylesheet" href="css/edit.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/staff.css">
+<link rel="stylesheet" href="css/index.css">
+<section id="editPanel">
+  <select class="directory" size=10>
+  </select>
+  <div class="card">
+    <div id="info">
+      <div id="name" class="row name">
+	<div class="entry" id="firstname"></div>
+	<div class="entry" id="lastname"></div>
+      </div>
+      <div id="name2" class="row name">
+	<input type="checkbox" id="multi-names">
+	<label class="checkbox" id="multiple" for="multi-names">
+          <span>Different Last Names?</span>
+	</label>
+	<div class="entry" id="firstname2"></div>
+	<div class="entry" id="lastname2"></div>
+      </div>
+      <div class="entry row" id="children"></div>
+      <div class="entry row" id="address"></div>
+      <div id="contact" class="dual">
+	<input type="checkbox" id="multi-contacts">
+	<label class="checkbox" for="multi-contacts">
+          Different Contact Information
+	</label>
+	<div id="grid">
+          <span id="contact1" class="contactname">&nbsp;</span>
+          <span id="contact2" class="contactname">&nbsp;</span>
+          <div class="entry row" id="phone"></div>
+          <div class="entry row" id="email"></div>
+          <div class="entry row multi-contact" id="phone2"></div>
+          <div class="entry row multi-contact" id="email2"></div>
+	</div>
+      </div>
+      
+    </div info>
+    <label for="photoupload" class="photocontainer">
+      <img id="photo" src="assets/unknownphoto.jpg">
+      <div id="clickhere">Click here to add a photo</div>
+      <input id="photoupload" name="file" type="file" accept="image/*">
+      <button id="deletephoto">Delete Photo</button>
+    </label>
+  </div>
+  <div id="controls">
+    <button id="new">New Family</button>
+    <button id="delete">Delete Family</button>
+    <div id="saving" style="color:red">Saving</div>
+    <a href="directory"><button id="generate">Generate Directory</button></a>
+  </div>
+</section>
+
+  <section id="staffPanel">
+    <h2>Basic Information</h2>
+    <div id="info">
+  <div class="entry">
+    <label><span>Church Name:</span>
+    <input id="church"></label>
+  </div>
+  <div class="entry">
+    <label><span>Address:</span>
+    <textarea id="address" rows=3></textarea></label>
+</div>
+  <div class="entry">
+    <label><span>Service Times:</span>
+      <input id="services"></label>
+  </div>
+  <div class="entry">
+    <label><span>Office Hours:</span>
+      <input id="officehours"></label>
+  </div>
+  <div class="assets">
+    <label>
+      <img src="assets/coverphoto.jpg">
+      Cover Photo
+    </label>
+    <label>
+      <img src="assets/interstitial.png">
+      For Blank Pages
+    </label>
+    <label>
+      <img src="assets/favicon.png">
+      FavIcon
+      </label>
+  </div>
+</div>
+<h2>Staff Page Entries</h2>
+<div id="entry">
+  <div class="row header">
+    <span>Section<BR>Head?</span>
+    <span>Title</span>
+    <span>Name</span>
+    <span>Email</span>
+  </div>
+<!--    
+  <div class="row">
+    <div class="sectionQ">
+      <label class="switch">
+	<input type="checkbox">
+	<span class="slider"></span>
+      </label>
+    </div>
+
+    <input class="sectionname" placeholder="Section Name">
+    <input class="title" placeholder="Title">
+    <input class="name" placeholder="Name">
+    <input class="email" placeholder="Email">
+  </div>
+
+-->
+
+  
+</div>
+<button id="newrow">Add Row</button>
+
+
+</section>
+
+
+
+<header>
+  <div id="buttons">
+    <label id="passwordholder">Password:<input id="password">
+    </label>
+    <button id="logout">Logout</button>
+    <button class="mode" id="editButton">Members</button>
+    <button class="mode" id="staffButton">Staff</button>
+    <a class="mode" href="directory" id="dirButton">Directory</a>
+  </div>
+  <h1>Church Directory</h1>
+</header>
