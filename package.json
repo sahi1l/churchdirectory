@@ -1,7 +1,7 @@
 {
     "name": "ChurchDirectory",
-    "version": "0.5",
-    "description": "yeah",
+    "version": "0.7",
+    "description": "A web app to allow churches to generate, maintain, and provide photo directories",
     "main": "app.js",
     "directories": {
         "lib": "lib"
@@ -9,12 +9,10 @@
     "scripts": {
         "start": "node app.js",
         "runscreen": "screen -S $npm_package_name node app.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "",
-    "license": "ISC",
+    "author": "Sam A. Hill",
+    "license": "CC BY-NC-ND 4.0",
     "dependencies": {
-        "bcrypt": "^5.1.1",
         "better-sqlite3": "*",
         "body-parser": "^1.20.2",
         "cookie-parser": "^1.4.6",
