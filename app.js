@@ -102,23 +102,9 @@ app.get('/load', auth.isAuthorized,(req,res) => {
 	       }
     res.json(data)
 })
-app.post('/staffout', (req,res) => {
-    let writer = fs.createWriteStream("dummy.txt")
-    let S = req.body
-    res.json(S)
-    return
-    writer.write(S)
-    let R = writer.close()
-    res.json([S,R])
-})
 
 
-//I think I can delete this?
-app.get('/test', auth.isAuthorized,(req,res) => {
-    res.send('Church Directory says hi!!')
-})
 const port = 9000
 app.listen(port,()=> {
-    console.log("Yup yup");
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Church Directory app listening on port ${port}`)
 })
