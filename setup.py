@@ -14,7 +14,7 @@ with open("db/auth.txt","w") as F:
 
 #2. Generate the database.
 ## Delete the database if it is already there
-database = os.path.join("db","dir.db")
+database = os.path.join("db","directory.db")
 C = sqlite3.connect(database)
 C.execute("""CREATE TABLE IF NOT EXISTS dir (
     id INTEGER PRIMARY KEY,
