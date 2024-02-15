@@ -1,3 +1,5 @@
+(NOT QUITE WORKING YET!)
+
 This is a program that allows churches to generate and maintain photo
 directories.  The front-end is written in Javascript, and the back-end
 in Node.js with Express.js and SQLite.
