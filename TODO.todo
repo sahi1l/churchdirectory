@@ -17,4 +17,10 @@
 * Staff page should be stored as a text file
 ** Organize as "New section" etc
 ** TODO Add "Move up" and "Move down" buttons
-* DONE Rename database from standrewsdirectory.db
+
+* Do a run through to make sure it works from scratch (with empty database etc)
+* Allow me to replace the assets images using the upload feature for the photos
+** It should be possible to make some of them "blank"
+** Give a better explanation of what these are
+* Move info to its own tab
+

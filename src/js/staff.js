@@ -5,7 +5,11 @@ function $$(x) {
     let result=$(str);
     return result;
 }
-
+function $i(x) {
+    let str="section#infoPanel "+x;
+    let result=$(str);
+    return result;
+}    
 function hash() {
     return Math.random().toString(16).slice(2) 
 }
@@ -144,16 +148,16 @@ async function Load() {
 }
 function InfoPopulate(data) {
     for (let entry of data) {
-	let $w = $$("#"+entry.name);
+	let $w = $i("#"+entry.name);
 	$w.val(entry.value);
 	$w.on("change",()=>UpdateInfo($w,entry.name));
     }
     console.debug(data);
-    $("h1").html($$("#church").val()+" Directory");
+    $("h1").html($i("#church").val()+" Directory");
 }
 function UpdateInfo($w,name) {
     let value = $w.val();
-    $("h1").html($$("#church").val()+" Directory");
+    $("h1").html($i("#church").val()+" Directory");
     $.ajax({
 	url: "saveinfo",
 	type: "POST",

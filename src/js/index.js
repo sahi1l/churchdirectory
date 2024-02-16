@@ -8,6 +8,7 @@ function Click(mode) {
 
 function init() {
     $("#editButton").on("click",()=>Click("edit"));
+    $("#infoButton").on("click",()=>Click("info"));
     $("#staffButton").on("click",()=>Click("staff"));
     Click("edit");
     //FIX: Password protect things

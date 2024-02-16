@@ -1,4 +1,52 @@
-section#staffPanel {
+section#infoPanel {
+
+
+    & #info {
+	background-color: #ddd;
+	border: 2px inset black;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	width: fit-content;
+    }
+    
+    & #info>.entry {
+	width: fit-content;
+	padding: 5px;
+	&>label>span {
+	    display: inline-block;
+	    min-width: 7em;
+	    text-align: right;
+	    vertical-align: top;
+	    margin-top: 4px;
+	}
+	&>label {
+	    font-weight: bold;
+	}
+	input {
+	    width: 20rem;
+	}
+	textarea {
+	    width: 20rem;
+	}
+    }
+    & h2 {margin-bottom: 0px;}
+    & .assets {
+	display: flex;
+	justify-content: space-around;
+    }
+    & .assets label {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+    }
+    & .assets img {
+	height: 80px;
+	border: 1px solid black;
+    }
+/*========================================*/
     & td {position: relative;}
     /* The switch - the box around the slider */
     & #entry {
@@ -123,6 +171,7 @@ section#staffPanel {
     & .row:has(input:focus) {
 	background-color: #ddf;
     }
-    
-    & h2 {margin-bottom: 0px;}
+
+
+
 }
