@@ -1,14 +1,14 @@
 section#staffPanel {
-    & td {position: relative;}
+    td {position: relative;}
     /* The switch - the box around the slider */
-    & #entry {
+    #entry {
 	--size: 20px; /*size of the checkboxes*/
 	--gap: 2px;
 	--width: calc(var(--size) * 2 + 2*var(--gap));
 	--inpwidth: 12rem;
 	--switchcolor: #2196F3;
     }
-    & .switch {
+    .switch {
 	--height: calc(var(--size) + 2*var(--gap));
 	box-sizing: border-box;
 	position: relative;
@@ -17,16 +17,16 @@ section#staffPanel {
 	height: var(--height);
 	margin-right: var(--gap);
     }
-    & .row>input {margin-inline: var(--gap);}
+    .row>input {margin-inline: var(--gap);}
     /* Hide default HTML checkbox */
-    & .switch input {
+    .switch input {
 	opacity: 0;
 	width: 0;
 	height: 0;
     }
     
     /* The slider */
-    & .slider {
+    .slider {
 	position: absolute;
 	cursor: pointer;
 	top: 0;
@@ -39,7 +39,7 @@ section#staffPanel {
 	border-radius: var(--size);
     }
     
-    & .slider:before {
+    .slider:before {
 	position: absolute;
 	content: "";
 	height: var(--size);
@@ -52,77 +52,77 @@ section#staffPanel {
 	border-radius: 50%;
     }
     
-    & input:checked + .slider {
+    input:checked + .slider {
 	background-color: var(--switchcolor);
     }
     
-    & input:focus + .slider {
+    input:focus + .slider {
 	box-shadow: 0 0 1px var(--switchcolor);
     }
     
-    & input:checked + .slider:before {
+    input:checked + .slider:before {
 	transform: translateX(var(--size));
     }
     
     
-    & #entry {
+    #entry {
 	display: flex;
 	flex-direction: column;
     }
     
-    & #entry .row {
+    #entry .row {
 	width: 100%;
 	display: flex;
 	padding-block: 2px;
     }
-    & #entry .row>input {width: var(--inpwidth);}
+    #entry .row>input {width: var(--inpwidth);}
     
-    & #entry .row>input.sectionname {
+    #entry .row>input.sectionname {
 	display: none;
 	width: calc(var(--inpwidth) * 3 + var(--gap) * 4);
 	font-weight: bold;
 	color: white;
 	background-color: grey;
     }
-    & #entry .row:has(input:checked)>input.sectionname {
+    #entry .row:has(input:checked)>input.sectionname {
 	display:block;
     }
-    & .row:has(input:checked)>input {
+    .row:has(input:checked)>input {
 	display: none;
     }
-    & .email {
+    .email {
 	font-family: monospace;
     }
-    & .row.header {
+    .row.header {
 	align-items: flex-end;
     }
-    & .row.header>span:first-child {
+    .row.header>span:first-child {
 	width: var(--width);
     }
-    & .row.header>span {
+    .row.header>span {
 	width: var(--inpwidth);
 	text-align: center;
     }
-    & .row.header>span {
+    .row.header>span {
 	font-weight: bold;
     }
-    & .sectionQ {
+    .sectionQ {
 	box-sizing: content-box;
 	border: 2px transparent solid;
     }
-    & .sectionQ:has(input:focus) {
+    .sectionQ:has(input:focus) {
 	border: 2px blue solid;
     }
-    & .pos {
+    .pos {
 	font-size: 0.5rem;
     }
-    & .row>button {
+    .row>button {
 	height: 50%;
 	margin: 2px;
     }
-    & .row:has(input:focus) {
+    .row:has(input:focus) {
 	background-color: #ddf;
     }
     
-    & h2 {margin-bottom: 0px;}
+    h2 {margin-bottom: 0px;}
 }
