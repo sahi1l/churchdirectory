@@ -39,7 +39,6 @@ const upload = multer({
 /*BASIC REDIRECTS*/
 app.use('/',express.static('src'))
 app.use('/edit',express.static('src/edit.html'))
-//app.use('/staff',express.static('src/staff.html'))
 app.use('/directory',express.static('src/directory.html'));
 //adding these two in case I want to relocate them
 app.use('/photos', express.static('photos'));
@@ -62,7 +61,7 @@ app.post('/upload',auth.isAuthorizedEdit, upload.single('file'), (req,res) => {
     res.send({path:dest})
 });
 
-
+//------------------------------------------------------------
 app.post('/save', auth.isAuthorizedEdit, (req,res) => {
     let fields = Object.keys(req.body)
     //console.debug("Username=",require("os").userInfo().username)
@@ -71,6 +70,7 @@ app.post('/save', auth.isAuthorizedEdit, (req,res) => {
     db.prepare(dbstring).run(req.body);
     res.json([req.body,dbstring])
 })
+//------------------------------------------------------------
 app.post('/savestaff',auth.isAuthorizedEdit, (req,res) => {
     let fields = Object.keys(req.body)
     let dbstring = "INSERT INTO staff ("+fields.join(",")+") VALUES ("+fields.map((x)=>"@"+x).join(",")+")";
@@ -80,20 +80,22 @@ app.post('/savestaff',auth.isAuthorizedEdit, (req,res) => {
     }
     res.json([req.body,dbstring])
 });
+//------------------------------------------------------------
 app.post('/saveinfo',auth.isAuthorizedEdit, (req,res) => {
     let entry = req.body;
     db.prepare("UPDATE info SET value=@value WHERE name=@name").run(entry);
     res.json([entry]);
 });
+//------------------------------------------------------------
 app.post('/delete', auth.isAuthorized, (req,res) => {
     db.prepare("DELETE FROM dir WHERE id=@id").run({id: req.body.id});
     res.json([]);
 });
-
+//------------------------------------------------------------
 app.get('/canedit', auth.isAuthorizedEdit, (req,res) => {
     res.status(200).end();
 });
-    
+//------------------------------------------------------------
 app.get('/load', auth.isAuthorized,(req,res) => {
     let data = {"families": db.prepare('SELECT * from dir').all(),
 		"staff": db.prepare('SELECT * from staff ORDER BY position').all(),
@@ -101,9 +103,14 @@ app.get('/load', auth.isAuthorized,(req,res) => {
 		"debug": req.cookies
 	       }
     res.json(data)
-})
-
-
+});
+//------------------------------------------------------------
+app.post("/pwdupdate", auth.isAuthorized, (req,res) => {
+    //update the passwords
+    auth.writePassword(req.body.mode, req.body.oldP, req.body.newP);
+});
+//------------------------------------------------------------
+//------------------------------------------------------------
 const port = 9000
 app.listen(port,()=> {
     console.log(`Church Directory app listening on port ${port}`)
