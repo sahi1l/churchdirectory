@@ -1,3 +1,4 @@
+let initiating=true;
 let numberspacing=256;
 let $saving;
 function $$(x) {
@@ -198,12 +199,41 @@ function AddRow(pos) {
     }
     return row;
 }
-let initiating=true;
+
+//========================================
+let dialog;
+function ChangePassword(mode) {
+    dialog.showModal();
+    dialog.mode = mode;
+    let modetext = mode[0].toUpperCase()+mode.slice(1);
+    $i("#whichpassword").html(modetext);
+}
+function SubmitPassword() {
+    let oldP = $i("#oldpassword").val();
+    let newP = $i("#newpassword").val();
+    let rnwP = $i("#renewpassword").val();
+    if(newP != rnwP) {
+        //passwords don't match, say something about that
+        return;
+    }
+    let data = {mode: dialog.mode,
+                oldP: oldP,
+                newP: newP};
+    console.debug(data);
+    //send a post to /pwdupdate. react accordingly
+    dialog.close();
+}
+//============================================================
 function init() {
     $root = $$("#entry");
     $saving = $("#saving");
+    dialog = $i("dialog")[0];
     $("#password").on("re-load",()=>{Load();});
     $("#password").on("un-load",()=>{Clear();});
     $$("#newrow").on("click",()=>AddRow());
+    $i("#passwords>#viewing").on("click",()=>ChangePassword("view"));
+    $i("#passwords>#editing").on("click",()=>ChangePassword("edit"));
+    $i("dialog #Cancel").on("click",()=>dialog.close());
+    $i("dialog #OK").on("click",SubmitPassword);
 }
 $(init);

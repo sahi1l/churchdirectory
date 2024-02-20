@@ -20,3 +20,14 @@ module.exports.isAuthorizedEdit = function(req,res,next) {
 	res.status(401).end();
     }
 }
+
+module.exports.writePassword = function(mode,oldP,newP) {
+    //mode is either "edit" or "view"
+    let passwords = JSON.parse(fs.readFileSync("db/auth.txt","utf8"))
+    if (passwords[mode]==oldP) {
+        passwords[mode]=newP;
+        fs.writeFileSync("db/auth.txt",JSON.stringify(passwords));
+        return true;
+    }
+    return false; //didn't match
+}

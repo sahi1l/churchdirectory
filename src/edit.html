@@ -66,43 +66,69 @@
 </section>
 
 <section id="infoPanel">
-    <h2>Basic Information</h2>
-    <div id="info">
-  <div class="entry">
-    <label><span>Church Name:</span>
-    <input id="church"></label>
+  <div id="info">
+  <h2>Basic Information</h2>
+    <div class="entry">
+      <label><span>Church Name:</span>
+        <input id="church"></label>
+    </div>
+    <div class="entry">
+      <label><span>Address:</span>
+        <textarea id="address" rows=3></textarea></label>
+    </div>
+    <div class="entry">
+      <label><span>Service Times:</span>
+        <input id="services"></label>
+    </div>
+    <div class="entry">
+      <label><span>Office Hours:</span>
+        <input id="officehours"></label>
+    </div>
   </div>
-  <div class="entry">
-    <label><span>Address:</span>
-    <textarea id="address" rows=3></textarea></label>
-</div>
-  <div class="entry">
-    <label><span>Service Times:</span>
-      <input id="services"></label>
-  </div>
-  <div class="entry">
-    <label><span>Office Hours:</span>
-      <input id="officehours"></label>
-  </div>
-  <div class="assets">
-    <label>
-      <img src="assets/coverphoto.jpg">
-      Cover Photo
-    </label>
-    <label>
-      <img src="assets/interstitial.png">
-      For Blank Pages
-    </label>
-    <label>
-      <img src="assets/favicon.png">
-      FavIcon
+  <div id="assets">
+  <h2>Images</h2>
+      <label>
+        <img src="assets/coverphoto.jpg">
+        Cover Photo
+      </label>
+      <label>
+        <img src="assets/interstitial.png">
+        For Blank Pages
+      </label>
+      <label>
+        <img src="assets/unknownphoto.jpg">
+        For Unknown People
       </label>
   </div>
+  <div id="passwords">
+    <h2>Change Password...</h2>
+    <button id="viewing">...to view the directory</button>
+    <button id="editing">...to edit the directory</button>
+    <!--    <label for="viewing">For viewing:</label> <input id="viewing" placeholder="Enter new password">
+        <label for="editing">For editing:</label> <input id="editing" placeholder="Enter new password">
+        -->
+  </div>
+  <dialog>
+    <div id="changepassword">
+    <h2>Change Password to <span id="whichpassword">View</span></h2>
+    <span id="isset">Password is not set</span>
+      <label>Current password: <input id="oldpassword"></label>
+      <label>New password: <input id="newpassword"></label>
+      <label>Retype new password: <input id="renewpassword"></label>
+      <div id="passwordbuttons">
+      <button id="Cancel">Cancel</button>
+      <button id="OK">OK</button>
+      </div>
     </div>
-    </section>
-      <section id="staffPanel">
-<h2>Staff Page Entries</h2>
-<div id="entry">
+  </dialog>
+      
+      
+</section>
+
+
+<section id="staffPanel">
+  <h2>Staff Page Entries</h2>
+  <div id="entry">
   <div class="row header">
     <span>Section<BR>Head?</span>
     <span>Title</span>
