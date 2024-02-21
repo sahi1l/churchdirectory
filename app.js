@@ -28,14 +28,25 @@ const storage = multer.diskStorage({
         cb(null, 'photos/')
     },
     filename: (req,file,cb) => {
+	console.debug("A",req)
         const unique = Date.now() + "-" + Math.round(Math.random()*1E9)
         let extension = path.extname(file.originalname)
+	console.debug("B")
         cb(null, unique + extension)
+	console.debug("C")
     }});
 const upload = multer({
     storage: storage,
-})
-
+});
+const storageasset = multer.diskStorage({
+    destination: (req,file,cb) => {
+	console.debug("destination req=",Object.keys(req))
+	cb(null,'assets/')
+    },
+    filename: (req,file,cb) => {
+	cb(null, req.query.target);
+    }});
+const uploadasset = multer({storage: storageasset});
 /*BASIC REDIRECTS*/
 app.use('/',express.static('src'))
 app.use('/edit',express.static('src/edit.html'))
@@ -45,12 +56,24 @@ app.use('/photos', express.static('photos'));
 app.use('/assets', express.static('assets'));
 	
 /*API*/
-app.post('/uploadasset', upload.single('file'),
+app.post('/uploadasset', uploadasset.single('file'),
+//    {name:'file', maxCount: 1},{name:'target', maxCount:1}]),
          (req,res) => {
+	     console.debug("/uploadasset",req)
              let path = req.file.path
-             console.debug("UPLOAD",req);
+	     res.status(200).end();
          }
         );
+app.post('/deleteasset',
+	 (req,res) => {
+	     let fname = "assets/"+req.query.target;
+	     console.log("fname=",fname);
+	     fs.writeFile(fname, "", (err) => {
+		 if (err) throw err;
+		 res.status(200).end();
+		 console.log(fname,"was deleted.");
+	     })
+	 });
 app.post('/upload',auth.isAuthorizedEdit, upload.single('file'),
          (req,res) => {
     let path = req.file.path
