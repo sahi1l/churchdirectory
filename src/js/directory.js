@@ -1,5 +1,7 @@
 /*global $**/
 /*THIS IS THE COMMAND TO GENERATE THE DIRECTORY*/
+import Cookies from "./lib/js.cookie.min.mjs"
+let $password,$pwdDialog;
 let $page = {};
 let pagenumber = -1;
 let booklet = false;
@@ -9,8 +11,11 @@ async function Load() {
     if (response.ok) {
         const json = await response.json();
 	console.debug(json);
+        $pwdDialog.removeClass("show");
         Generate(json);
     } else {
+        $pwdDialog.addClass("show");
+        $password.addClass("error");
         console.error("Load Error");
     }
 }
@@ -232,14 +237,29 @@ function Layout() {
     }
 }
 let $main;
-function init() {
+let cookie = "churchdirectoryRead";
+function CheckPassword() {
+    let password = $password.val();
+    console.debug("Changing password to",password);
+    if (password=="") {
+        password = Cookies.get(cookie);
+    } else {
+        Cookies.set(cookie,password);
+    }
     Load();
+}
+function init() {
     $main = $("section#dirPanel>#content");
+    $password = $("section#dirPanel #password");
+    $pwdDialog = $("section#dirPanel #passworddialog");
+    Load();
     $("#booklet")[0].checked = booklet;
     $("#booklet").on("change",(e)=>{
         booklet = e.target.checked;
         Layout();
     })
+    $password.on("keypress",()=>{$password.removeClass("error");});
+    $password.on("change",CheckPassword);        
 }
 
 $(init)

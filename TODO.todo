@@ -1,5 +1,5 @@
 * The edit page (index.html)
-** Add password protection before downloading stuff
+** DONE Add password protection before downloading stuff
 *** Use the hash code in hash.js to generate a hash of the entered password, and compare
 *** the hash of cantaloupe with seed=0 is 8599368505905664, save this as a cookie and in auth.js
 *** Password should protect against staff and edit
@@ -8,7 +8,7 @@
 * Directory page
 ** DONE Add an edit icon to go to the edit page
 ** DONE Restyle the header to be smaller?
-** Require a separate password to create the page.
+** DONE Require a separate password to create the page.
 * Setup
 ** Create a README.md of what needs to be done to get it running
 ** npm has a "package" command of some sort
@@ -18,7 +18,7 @@
 ** Organize as "New section" etc
 ** TODO Add "Move up" and "Move down" buttons
 
-* Do a run through to make sure it works from scratch (with empty database etc)
+* TODO Do a run through to make sure it works from scratch (with empty database etc)
 * Allow me to replace the assets images using the upload feature for the photos
 ** It should be possible to make some of them "blank"
 ** Give a better explanation of what these are

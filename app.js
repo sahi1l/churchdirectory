@@ -39,7 +39,7 @@ const upload = multer({
 /*BASIC REDIRECTS*/
 app.use('/',express.static('src'))
 app.use('/edit',express.static('src/edit.html'))
-app.use('/directory',express.static('src/directory.html'));
+app.use('/directory',express.static('src/index.html'));
 //adding these two in case I want to relocate them
 app.use('/photos', express.static('photos'));
 app.use('/assets', express.static('assets'));

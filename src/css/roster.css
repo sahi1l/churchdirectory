@@ -1,0 +1,179 @@
+section#editPanel {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 1fr 50px;
+    
+    & div {margin: 0px;}
+    & .directory {
+	size: 10;
+	width: 200px;
+	height: 100%;
+    }
+    & #controls {
+	grid-row: 2;
+	grid-column: 2;
+	margin-top: 1vw;
+	margin-left: 2vw;
+    }
+    & .card {
+	width: calc(90vw - 200px);
+	margin: 0vw 2vw;
+	border: 1px solid black;
+	padding: 3px;
+	position: relative;
+	display: flex;
+    }
+
+    & .row.row {
+	width: 100%;
+	position: relative;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+    }
+    & .entry .input {
+	width: 95%;
+    }
+    & .entry>* {
+	vertical-align: top;
+    }
+    & #info {
+	margin-left: 25px;
+	width: 70vw;
+    }
+    & .name {
+	display: flex;
+	height: 20px;
+    }
+    & .name .entry {z-index: 3;}
+
+    & .checkbox {
+	display: flex;
+	align-items: center;
+	align-content: center;
+	position: absolute;
+	width: 100%;
+    }
+    & .checkbox>span {
+	color: #AAA;
+	position: absolute;
+	background-color: white;
+    }
+
+/*DIFFERENT LAST NAMES*/
+    & #multi-names {
+	position: absolute;
+	left: -3ex;
+    }
+    & #multi-names ~ label {display: block;}
+    & #multi-names ~ .entry {display: none;}
+
+    & #multi-names:checked ~ label {display: none;}
+    & #multi-names:checked ~ .entry {display: block;}
+    
+
+/*CONTACTS*/
+    & #contact {
+	position: relative;
+    }
+    & #multi-contacts {
+	position: absolute;
+	left: -3ex;
+	top: 0px;
+    }
+
+
+    & #multi-contacts         ~ #grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr;
+    }
+    & #multi-contacts:checked ~ #grid {
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    & #multi-contacts         ~ label {
+	display: block;
+	font-style: italic;
+	color: #AAA;
+    }
+    & #multi-contacts:checked ~ label {display: none;}
+
+    & #multi-contacts ~ #grid > .row {
+	margin-top: 0px;
+    }
+    & #multi-contacts         ~ #grid > .contactname {display: none;}
+    & #multi-contacts:checked ~ #grid > .contactname {
+	display: block; grid-row: 1;
+	text-align: center;
+	font-style: italic;
+    }
+    & #multi-contacts:checked ~ #grid > #contact1 {grid-column: 1;}
+    & #multi-contacts:checked ~ #grid > #contact2 {grid-column: 2;}
+
+    & #multi-contacts ~ #grid > #phone {grid-column: 1; grid-row: 2;}
+    & #multi-contacts ~ #grid > #email {grid-column: 1; grid-row: 3;}
+
+    & #multi-contacts:checked ~ #grid > #phone {grid-row: 2; grid-column: 1;}
+    & #multi-contacts:checked ~ #grid > #email {grid-row: 3; grid-column: 1;}
+    
+    & #multi-contacts ~ #grid > #phone2 {display: none;}
+    & #multi-contacts ~ #grid > #email2 {display: none;}
+
+    & #multi-contacts:checked ~ #grid > #phone2 {display: block; grid-row: 2; grid-column: 2;}
+    & #multi-contacts:checked ~ #grid > #email2 {display: block;  grid-row: 3; grid-column: 2;}
+
+    & #email>input ,#email2>input {
+	font-family: monospace;
+    }
+
+                     
+
+/*PHOTOS*/
+    & label[for=photoupload] {
+	float: right;
+	height 200px;
+	width: 210px;
+	z-index: 2;
+	background-color: white;
+    }
+    & img {width: 150px; padding: 5px;}
+    & #photoupload {visibility: hidden;}
+    & .photocontainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    }
+    & img#photo ~ #deletephoto {
+	display: none;
+    }
+    & #clickhere {
+	position: absolute;
+	top: 50%;
+	background-color: rgba(255,255,255,0.8);
+	width: 6em;
+	text-align: center;
+    }
+    & img#photo:not([src="assets/unknownphoto.jpg"]) ~ #clickhere {
+	display: none;
+    }
+
+    & img#photo:not([src="assets/unknownphoto.jpg"]) ~ #deletephoto {
+	display: block;
+	margin: auto;
+    }
+    & .reload {border: 1px solid red;}
+    
+    & #pageheader {
+	display: block;
+	width: 50vw;
+    }
+    & #address>textarea {
+	height: 5em;
+    }
+    & #lastname>input,#lastname2>input {
+	font-variant: small-caps;
+    }
+}

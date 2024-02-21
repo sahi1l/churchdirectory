@@ -336,3 +336,19 @@ section#dirPanel>#content {
     & input {display: none;}
 }
 */
+
+#passworddialog {
+    margin-top: 50px;
+    display: none;
+    flex-direction: column;
+    width: 15rem;
+    &.show {
+        display: flex;
+    }
+    input {
+        margin-top: 1rem;
+        &.error {
+            background-color: #faa;
+        }
+    }
+}
