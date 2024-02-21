@@ -7,3 +7,9 @@ section {
 	
     }
 }
+.changephoto {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    font-weight: bold;
+}

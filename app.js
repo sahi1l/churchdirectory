@@ -45,8 +45,14 @@ app.use('/photos', express.static('photos'));
 app.use('/assets', express.static('assets'));
 	
 /*API*/
-app.post('/upload',auth.isAuthorizedEdit, upload.single('file'), (req,res) => {
-    console.log("Receiving photo");
+app.post('/uploadasset', upload.single('file'),
+         (req,res) => {
+             let path = req.file.path
+             console.debug("UPLOAD",req);
+         }
+        );
+app.post('/upload',auth.isAuthorizedEdit, upload.single('file'),
+         (req,res) => {
     let path = req.file.path
     let dest = req.file.destination + "D" + req.file.filename.split(".").slice(0,-1).join(".") + '.jpg';
     im.resize({srcPath: path, dstPath: dest, format: 'jpg', width: 400},

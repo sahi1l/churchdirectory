@@ -9,6 +9,7 @@
 <script type="module" src="js/password.js"></script>
 <script type="module" src="js/roster.js"></script>
 <script type="module" src="js/staff.js"></script>
+<script type="module" src="js/info.js"></script>
 <script type="module" src="js/edit.js"></script>
 <link rel="stylesheet" href="css/roster.css">
 <link rel="stylesheet" href="css/header.css">
@@ -86,19 +87,28 @@
     </div>
   </div>
   <div id="assets">
-  <h2>Images</h2>
+    <h2>Images</h2>
+    <!--
       <label>
         <img src="assets/coverphoto.jpg">
+        <div class="changephoto">
         Cover Photo
+        <input name="file" type="file" accept="image/*">
+        <button class="deletephoto">Delete</button>
+        </div>
       </label>
       <label>
         <img src="assets/interstitial.png">
-        For Blank Pages
+        <div class="changephoto">
+          For Blank Pages
+          <input name="file" type="file" accept="image/*">
+          <button class="deletephoto">Delete</button>
       </label>
       <label>
         <img src="assets/unknownphoto.jpg">
         For Unknown People
       </label>
+      -->
   </div>
   <div id="passwords">
     <h2>Change Password...</h2>
