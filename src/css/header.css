@@ -27,6 +27,8 @@ header>#buttons {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
+    position: relative;
+    z-index: 3;
     &>.mode {
 	font-family: sans-serif;
 	font-size: 1rem;
