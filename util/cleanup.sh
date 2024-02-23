@@ -1,6 +1,6 @@
 #!/bin/bash
 #Back everything up in a zip file with a unique name
-. ./backup.sh
+. util/backup.sh
 #Remove the authfile
 rm db/auth.txt
 #Remove the database

@@ -7,7 +7,7 @@ import subprocess
 webgroup = "web"
 permflags = int('775',8)
 #0. Set the webgroup
-response = input(f"Enter the group that the webserver belongs to, or press return for default [{web}]")
+response = input(f"Enter the group that the webserver belongs to, or press return for default [{webgroup}]")
 if response!="":
     webgroup = response
 #1. Update the passwords
