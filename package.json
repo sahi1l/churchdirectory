@@ -4,11 +4,14 @@
     "description": "A web app to allow churches to generate, maintain, and provide photo directories",
     "main": "app.js",
     "directories": {
-        "lib": "lib"
+        "lib": "src/js/lib"
     },
     "scripts": {
         "start": "node app.js",
-        "runscreen": "screen -S $npm_package_name node app.js"
+	"backup": "./util/backup.sh",
+	"clean": "./util/cleanup.sh",
+	"reset": "./util/cleanup.sh && ./util/setup.py",
+	"setup": "./util/setup.py"
     },
     "author": "Sam A. Hill",
     "license": "CC BY-NC-ND 4.0",
@@ -23,9 +26,5 @@
         "multer": "^1.4.5-lts.1",
         "nocache": "^4.0.0",
         "path": "^0.12.7"
-    },
-    "devDependencies": {
-        "eslint": "^8.56.0",
-        "jest": "^29.7.0"
     }
 }
