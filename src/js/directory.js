@@ -148,11 +148,21 @@ function CoverPage(listofinfo) {
     $("<img>").appendTo($cover).attr({src: "assets/coverphoto.jpg", alt:""});
     let $div = $("<div>").appendTo($cover).addClass("subtext")
     $('<div class="address">').appendTo($div).html(info.address.replaceAll("\n","<BR>"));
-    $('<div class="hours">').appendTo($div).html(`<table><tr>
+    let $table = $("<table>");
+    for (let [name,value] of [["Service Times",info.services],
+                              ["Office Hours",info.officehours]]){
+        if(value=="") {continue;}
+        let $tr = $("<tr>").appendTo($table);;
+        $("<th>").appendTo($tr).html(name);
+        $("<td>").appendTo($tr).html(value);
+    }
+    $('<div>').addClass("hours").appendTo($div).append($table);
+/*    $('<div class="hours">').appendTo($div).html(`<table><tr>
 <th>Holy Eucharist:</th><td>${info.services}</td>
 </tr><tr>
 <th>Office Hours:</th><td>${info.officehours}</td>
-</tr>`)
+</tr>`)*/
+    //FIX: This shouldnt be h2!!!
     $("<h2>").appendTo($cover).html(
 	new Date().toLocaleDateString('en-US',{month: "long",day: "numeric", year: "numeric"})
     );
