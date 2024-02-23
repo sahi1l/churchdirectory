@@ -1,21 +1,18 @@
-(NOT QUITE WORKING YET!)
-
-This is a program that allows churches to generate and maintain photo
-directories.  The front-end is written in Javascript, and the back-end
-in Node.js with Express.js and SQLite.
+This is a program that allows churches (and other organizations) to generate and maintain photo directories.  The front-end is written in Javascript, and the back-end in Node.js with Express.js and SQLite.
 
 HOW TO INSTALL
-- Unpack the archive in a folder on your webserver, preferably in a
-folder that cannot be accessed in the usual way.
-- Make sure npm is installed.
-- Update the passwords in db/auth.txt.  The first "read" password allows
-congregants to view the directory, while the second "edit" password
-allows people to edit the directory.
+- Install npm onto your webserver.
+- Run "npm install" to install the dependencies.
+- Run "npm run setup" and answer the prompt questions to get everything set up.
+- Run "npm run start" as a daemon*.
+- Visit the page on the web to see the (empty) directory.  Click the "Edit" button to edit details and start adding families.
 
-- You can replace the images in assets/ if you like:
--- coverphoto.jpg is the picture that goes on the cover
--- favicon.png is the little icon that appears on your browser tab.
--- interstitial.png is an image that goes on blank pages in the directory. You can delete it if you prefer blank pages.
--- unknownphoto.jpg is the image shown for families with no photo. Delete it if you prefer blankness.
 
-- Set up a daemon to run `npm run start --run-in-foreground`
+*I don't have a lot of experience with this yet, myself.  I use NearlyFreeSpeech as my host, and my setup is as follows:
+- I store the folder as /home/protected/churchdirectory to prevent it from being accessed directly from the web.
+- I go to the NFS control panel and "Add a Daemon", with the command "/home/protected/churchdirectory/run.sh"
+- I then add a proxy with protocol http, document root /, and target port 9000.
+
+
+HOW TO USE
+(coming soon)
