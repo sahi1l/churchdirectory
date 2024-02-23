@@ -17,12 +17,12 @@ I am still learning about Node.js and daemons, but I thought I'd describe how I 
 
 - NFS has a special folder called `/home/protected` which can be accessed by scripts and daemons but not the general web.  I store the directory as `/home/protected/churchdirectory` so that outside snoopers can't download my database or my passwords.
 - In the NFS control panel for my site, I pressed "Add a Daemon", with these fields:
--- **Command Line**: `/home/protected/churchdirectory/run.sh`
--- **Working Directory**: `/home/protected/churchdirectory`
--- **Run Daemon As**: `web`
--- I then pressed "Add a Proxy" with these fields:
--- **Protocol**: `HTTP`
--- **Base URI**: `/directory/` (so I can visit the site at `XXX.nfshost.com/directory`)
--- **Document Root**: `/`
--- **Target Port**: `9000`
+  - **Command Line**: `/home/protected/churchdirectory/run.sh`
+  - **Working Directory**: `/home/protected/churchdirectory`
+  - **Run Daemon As**: `web`
+- I then pressed "Add a Proxy" with these fields:
+  - **Protocol**: `HTTP`
+  - **Base URI**: `/directory/` (so I can visit the site at `XXX.nfshost.com/directory`)
+  - **Document Root**: `/`
+  - **Target Port**: `9000`
 
