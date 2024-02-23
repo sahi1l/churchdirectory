@@ -156,6 +156,10 @@ section#editPanel {
 	width: 6em;
 	text-align: center;
     }
+    img#photo {
+	background-color: white;
+	color: white;
+    }
     & img#photo:not([src="assets/unknownphoto.jpg"]) ~ #clickhere {
 	display: none;
     }

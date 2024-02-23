@@ -79,7 +79,7 @@ class Card {
 	    }
             this.$img = $("<img>")
                 .addClass("photo")
-                .attr("src",family.photo)
+                .attr({"src":family.photo, "alt": ""})
                 .prependTo(this.$card);
         } else {
             this.delete = true;
@@ -132,7 +132,12 @@ function Empty() {
     return $page
 }
 function CoverPage(listofinfo) {
-    let info = {};
+    let info = {
+	church: "",
+	address: "",
+	services: "",
+	officehours: ""
+    };
     for (let element of listofinfo) {
 	info[element.name] = element.value;
     }
@@ -140,7 +145,7 @@ function CoverPage(listofinfo) {
 
     let $cover = $("<dir-page>").addClass("cover");
     $("<h1>").appendTo($cover).html(`${info.church} Directory`);
-    $("<img>").appendTo($cover).attr({src: "assets/coverphoto.jpg"});
+    $("<img>").appendTo($cover).attr({src: "assets/coverphoto.jpg", alt:""});
     let $div = $("<div>").appendTo($cover).addClass("subtext")
     $('<div class="address">').appendTo($div).html(info.address.replaceAll("\n","<BR>"));
     $('<div class="hours">').appendTo($div).html(`<table><tr>
