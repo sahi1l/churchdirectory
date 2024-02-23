@@ -7,11 +7,11 @@
         "lib": "src/js/lib"
     },
     "scripts": {
-        "start": "node app.js",
-	"backup": "./util/backup.sh",
-	"clean": "./util/cleanup.sh",
-	"reset": "./util/cleanup.sh && ./util/setup.py",
-	"setup": "./util/setup.py"
+        "start": "nodemon -L app.js",
+        "backup": "./util/backup.sh",
+        "clean": "./util/cleanup.sh",
+        "reset": "./util/cleanup.sh && ./util/setup.py",
+        "setup": "./util/setup.py"
     },
     "author": "Sam A. Hill",
     "license": "CC BY-NC-ND 4.0",
@@ -26,5 +26,8 @@
         "multer": "^1.4.5-lts.1",
         "nocache": "^4.0.0",
         "path": "^0.12.7"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.0"
     }
 }
