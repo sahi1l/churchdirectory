@@ -7,6 +7,7 @@ const fs = require('fs')  //filesystem, for use with a single text output
 const path = require('path')
 const unlink = require('node:fs').unlink
 const cors = require('cors')
+const getport = require('./port')
 const im = require('imagemagick');
 
 const db = require('better-sqlite3')('./db/directory.db')
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use('/robots.txt', function (req, res, next) {
     res.type('text/plain')
-    res.send("User-agent: *\nDisallow: */");
+    res.send("User-agent: *\nDisallow: */\n");
 });
 /*PHOTO UPLOAD*/
 const storage = multer.diskStorage({
@@ -126,6 +127,7 @@ app.get('/canedit', auth.isAuthorizedEdit, (req,res) => {
 });
 //------------------------------------------------------------
 app.get('/load', auth.isAuthorized,(req,res) => {
+    console.debug("User=",req.user); 
     let data = {"families": db.prepare('SELECT * from dir').all(),
 		"staff": db.prepare('SELECT * from staff ORDER BY position').all(),
 		"info": db.prepare('SELECT * from info').all(),
@@ -140,7 +142,7 @@ app.post("/pwdupdate", auth.isAuthorized, (req,res) => {
 });
 //------------------------------------------------------------
 //------------------------------------------------------------
-const port = 9000
+let port = getport.getport()
 app.listen(port,()=> {
     console.log(`Church Directory app listening on port ${port}`)
 })

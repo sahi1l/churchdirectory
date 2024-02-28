@@ -5,11 +5,22 @@ import json
 import sqlite3
 import subprocess
 webgroup = "web"
+port = 9000
 permflags = int('775',8)
 #0. Set the webgroup
 response = input(f"Enter the group that the webserver belongs to, or press return for default [{webgroup}]")
 if response!="":
     webgroup = response
+
+#Port
+response = unput(f"What port should the directory use? [default: {port}]")
+portfile="getport.js"
+os.chmod(portfile,permflags)
+if response != "":
+    port = int(response)
+    with open("getport.js","w") as F:
+        F.write(f"module.exports.getport = function() {{return {port};}}")
+
 #1. Update the passwords
 authfile = os.path.join("db","auth.txt")
 readpass = input("Enter a password to view the directory online, or leave blank to disable password protection.\n")
@@ -60,6 +71,11 @@ subprocess.run(["chgrp",webgroup,database]) #Could do with os.chown
 #3. Populate the info database with prompts
 church = input("What is the organization's name? ")
 C.execute("INSERT INTO info (name,value) VALUES (?,?) ON CONFLICT(name) DO UPDATE SET value=?",("church",church,church))
+for name in ["address","services","officehours"]:
+    try:
+        C.execute("INSERT INTO info (name) VALUES (?)",(name,))
+    except:
+        pass
 C.commit()
 
 #4. Make the photos folder, if it doesn't already exist
