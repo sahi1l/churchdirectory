@@ -370,6 +370,9 @@ class Photo {
 	if(path==undefined || path=="") {
 	    path="assets/unknownphoto.jpg";
 	}
+	if(!path.includes("/")){
+	    path = "photos/"+path;
+	}
 	this.$root.attr({src:path});
     }
     clear() {

@@ -11,6 +11,7 @@
         "backup": "./util/backup.sh",
         "clean": "./util/cleanup.sh",
         "reset": "./util/cleanup.sh && ./util/setup.py",
+	"fix": "./util/fix.sh",
         "setup": "./util/setup.py"
     },
     "author": "Sam A. Hill",

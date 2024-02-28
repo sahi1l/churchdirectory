@@ -90,6 +90,7 @@ section#dirPanel>#content {
 	grid-column-start: 2;
 	grid-column-end: 2;
 	margin: 10px;
+	max-width: 200px;
     }
 
     & .name {
@@ -97,7 +98,7 @@ section#dirPanel>#content {
     }
     & .children {
 	font-style: italic;
-	font-size: 120%;
+	font-size: 1rem;
     }
     & .last {
 	font-weight: 900;
@@ -116,10 +117,16 @@ section#dirPanel>#content {
                      monospace;
 	font-size: 16px;
     }
+    & .Crowcontainer {
+	display: flex;
+	flex-wrap: wrap;
+	width: 6in;
+    }
     & .Crow {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: baseline;
+	margin: 0px 4px;
     }
     & .Cname {margin-right: 1ex;
               font-weight: 900;

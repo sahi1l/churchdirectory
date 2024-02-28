@@ -155,6 +155,7 @@ function InfoPopulate(data) {
     }
     console.debug(data);
     $("h1").html($i("#church").val()+" Directory");
+    $("title").html($i("#church").val()+" Directory");
 }
 function UpdateInfo($w,name) {
     let value = $w.val();

@@ -1,4 +1,3 @@
-console.debug("Info1")
 class PhotoAsset {
     constructor(name,title) {
 	this.name = name;
@@ -39,7 +38,6 @@ class PhotoAsset {
 		console.debug("Error",res)
 	    })
 	    .finally(()=>{console.debug("done")});
-	console.debug("DONE")
     }
     delete() {
 	fetch(`deleteasset?target=${this.name}`, {
@@ -59,7 +57,6 @@ class PhotoAsset {
     }
 }
 function init() {
-    console.debug("Info");
     new PhotoAsset("coverphoto.jpg","Cover Photo");
     new PhotoAsset("interstitial.png","For Blank Pages");
     new PhotoAsset("unknownphoto.jpg","Families Without Photos");

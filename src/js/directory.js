@@ -65,11 +65,12 @@ class Card {
 		else if (F2=="" & F1.includes(" and ")) {
 		    [F1,F2] = F1.split(" and ");
 		}
-                let $C1 = $("<div>").addClass("Crow").appendTo($contact);
+		let $C0 = $("<div>").addClass("Crowcontainer").appendTo($contact);
+                let $C1 = $("<div>").addClass("Crow").appendTo($C0);
                 $("<span>").addClass("Cname").html(F1.trim()).appendTo($C1);
                 $("<span>").addClass("Cphone").html(P1).appendTo($C1);
                 $("<span>").addClass("Cemail").html(E1).appendTo($C1);
-                let $C2 = $("<div>").addClass("Crow").appendTo($contact);
+                let $C2 = $("<div>").addClass("Crow").appendTo($C0);
                 $("<span>").addClass("Cname" ).html(F2.trim()).appendTo($C2);
                 $("<span>").addClass("Cphone").html(P2).appendTo($C2);
                 $("<span>").addClass("Cemail").html(E2).appendTo($C2);
@@ -77,6 +78,8 @@ class Card {
 	    if(family.photo == "") {
 		family.photo = "assets/unknownphoto.jpg"
 	    }
+	    if(!family.photo.includes("/")){
+		family.photo = "photos/"+family.photo}
             this.$img = $("<img>")
                 .addClass("photo")
                 .attr({"src":family.photo, "alt": ""})
