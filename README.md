@@ -2,10 +2,11 @@ This is a program that allows churches (and other organizations) to generate and
 
 # HOW TO INSTALL
 - Install npm onto your webserver.
-- Run "npm install" to install the dependencies.
-- Run "npm run setup" and answer the prompt questions to get everything set up.
-- Run "npm run start" as a daemon.  (See EXAMPLE INSTALLATION below.)
-- Visit the page on the web to see the (empty) directory.  Click the "Edit" button to edit details and start adding families.
+- Run `npm install` to install the dependencies.
+- Run `npm run setup` and answer the prompt questions to get everything set up.
+- Run `npm run start` as a daemon.  (See EXAMPLE INSTALLATION below.)
+- Visit the page on the web to see the (empty) directory.  
+Click the "Edit" button to edit details and start adding families.
 
 
 # HOW TO USE
