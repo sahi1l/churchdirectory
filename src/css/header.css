@@ -47,6 +47,8 @@ header>#buttons {
 	}
     }
 }
+body:not(.loggedin) .mode {
+    display: none;
 }
 header>#buttons>.mode.current {
     color: var(--headercolor);
@@ -66,9 +68,12 @@ header label:has(#password) {
     }
     &+#logout {
 	display: none;
-	margin-bottom:10px;
     }
 }
+#logout {
+    margin-bottom: 8px;
+}
+    
 header label:has(#password.right) {
     display: none;
     &+#logout {
@@ -77,13 +82,28 @@ header label:has(#password.right) {
 }
 
 
-#saving {
-    opacity: 0;
-    transition: opacity 2s ease-in;
+#saveindicator {
     display: inline;
     color: red;
+    position: fixed;
+    top: 2.5rem;
+    left: 1rem;
+    width: 5rem;
+    div {
+	transition: opacity 0.5s linear;
+	position: absolute;
+	top: 0rem;
+	left: 0rem;
+	opacity: 0;
+    }
 }
-#saving.show {
+#cantsave {
+    background-color: red;
+    color: white;
+}
+
+#saveindicator div.show {
     opacity: 1;
-    transition: opacity 2s ease-out;
+    opacity: 1;
+    transition: opacity 0.5s linear;
 }

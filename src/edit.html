@@ -3,7 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>St. Andrew's Church Directory Database</title>
-  <link rel="icon" href="src/favicon.png">
+  <link rel="icon" href="favicon.png">
 <script type="module" src="js/lib/jquery.js"></script>
 <script type="module" src="js/lib/js.cookie.min.mjs"></script>
 <script type="module" src="js/password.js"></script>
@@ -61,7 +61,7 @@
   <div id="controls">
     <button id="new">New Family</button>
     <button id="delete">Delete Family</button>
-    <div id="saving" style="color:red">Saving</div>
+    <!--<div id="saving" style="color:red">Saving</div>-->
     <a href="directory"><button id="generate">Generate Directory</button></a>
   </div>
 </section>
@@ -168,13 +168,24 @@
 
 
 </section>
-
+<section id="logoutPanel">
+  <div>
+    <span>
+      Please enter the password in <span class="passwordbox">the box</span> above to edit the database.
+    </span>
+  </div>
+</section>
 
 
 <header>
   <div id="buttons">
-    <label id="passwordholder">Password:<input id="password">
+    <label id="passwordholder"><!--Password:-->
+      <input id="password" placeholder="Enter password...">
     </label>
+    <div id="saveindicator">
+      <div id="saving">Saving</div>
+      <div id="cantsave">Can't Save</div>
+    </div>
     <button id="logout">Logout</button>
     <button class="mode" id="editButton">Members</button>
     <button class="mode" id="staffButton">Staff</button>

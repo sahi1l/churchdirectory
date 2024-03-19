@@ -7,6 +7,12 @@ import Cookies from "./lib/js.cookie.min.mjs"
     
 let roster;
 let card;
+//I'll need this for staff.js and info.js too. 
+function flashID($widget) {
+    $widget.addClass("show");
+    setTimeout(($w=$widget) => $w.removeClass("show"), 3000);
+//    setTimeout(()=>{$widget.removeClass("show")},500);
+}
 let IO = new class {
     //Handles saving and loading via express
     constructor() {
@@ -26,10 +32,13 @@ let IO = new class {
             data: JSON.stringify(family),
             dataType: 'json',
             success: (x) => {
-                $saving.addClass("show");
-                setTimeout(()=>{$saving.removeClass("show")},500);
+		flashID($saving);
+                //$saving.addClass("show");
+                //setTimeout(()=>{$saving.removeClass("show")},500);
             },
-            error: (x) => {console.error("Error: ",x);}
+            error: (x) => {
+		flashID($("#cantsave"));
+	    }
         });
     }
     //----------------------------------------
@@ -63,7 +72,8 @@ let IO = new class {
 //============================================================
 function Delete() {
     let id = card.id;
-    if (confirm(`Do you want to delete this family ${id}?`)) {
+    let name = $(".directory option:selected").html();
+    if (confirm(`Do you want to delete this family?\n ${name}`)) {
         roster.families[id].clear();
         roster.families[id] = undefined;
         $.ajax({
@@ -77,6 +87,7 @@ function Delete() {
                 roster.populate();
             },
             error: (x) => {
+		flashID($("#cantsave"));
                 console.debug("Delete error",x);
             }
         });
@@ -233,6 +244,7 @@ class Field {
     }
     set(text) {
         this.$field.val(text);
+	this.$field.defaultValue = text;
     }
     clear() {
         this.set(this.defaultValue);
@@ -259,7 +271,9 @@ class Input extends Field {
                 .appendTo($root);
         }
         if(onUpdate) {
-            this.$field.on("change",(e)=>{onUpdate(id,this.get.bind(this)());});
+            this.$field.on("change",(e)=>{
+		onUpdate(id,this.get.bind(this)());
+	    });
             /*            this.$field.on("keypress", (e)=>{
                           if(e.key==13) {onUpdate(this.get());}})
             */

@@ -1,4 +1,5 @@
 import Cookies from "./lib/js.cookie.min.mjs"
+import {Click} from "./edit.js"
 let cookie = "churchdirectoryEdit";
 export let $password;
 let event = new Event("re-load");
@@ -13,19 +14,23 @@ async function UpdatePassword() {
     let ok = await fetch("canedit");
     if (ok.ok) {
 	console.debug("ok");
+	$("body").addClass("loggedin");
+	Click("edit");
+	$("#logout").show();
 	$password.addClass("right");
 	$password.trigger("re-load");
     } else {
-	console.debug("naah");
-	$password.removeClass("right");
-	$password.trigger("un-load");
+	Logout();
     }
 }
 function Logout() {
+    $("body").removeClass("loggedin");
     $password.val("");
     Cookies.set(cookie,"");
     $password.removeClass("right");
     $password.trigger("un-load");
+    $("#logout").hide();
+    Click("logout");
 }
 function init() {
     $password = $("#password");

@@ -15,7 +15,7 @@ function hash() {
     return Math.random().toString(16).slice(2) 
 }
 class Row {
-    constructor(root,position) {
+    constructor(root,position=0) {
 	let template = `
     <div class="sectionQ">
       <label class="switch">
@@ -24,17 +24,17 @@ class Row {
       </label>
     </div>
 `;
-	this.$w = $("<div>").addClass("row").attr("data-pos",position).appendTo(root);
+	this.$w = $("<div>").addClass("row").appendTo(root);
 	this.$switch = $("<div>").addClass("sectionQ").html(template).appendTo(this.$w);
 	this.$sectionQ = $(this.$switch[0].querySelector("input"));
 	this.$section = this.makeInput("sectionname","Section Name");
 	this.$title = this.makeInput("title","Title");
 	this.$name = this.makeInput("name","Name");
 	this.$email = this.makeInput("email","Email");
-	this.$insert = $("<button>").html("Insert ↑").appendTo(this.$w).on("click",(e,that=this)=>InsertBefore(that));
+	this.$insert = $("<button>").addClass("insert").html("Insert ↑").appendTo(this.$w).on("click",(e,that=this)=>InsertBefore(that));
 	this.$delete = $("<button>").html("Delete").appendTo(this.$w).on("click",()=>this.Delete());
-	this.$pos = $("<span>").addClass("pos").html(position);//.appendTo(this.$w);
-	this.position = position;
+//	this.$pos = $("<span>").addClass("pos").html(position);//.appendTo(this.$w);
+//	this.position = position;
 	this.hash = hash();
     }
     makeInput(className, placeholder) {
@@ -43,33 +43,57 @@ class Row {
 	$obj.on("keypress",(e,that=this)=>Move(e,that));
 	return $obj;
     }
-    renumber(num) {
+/*    renumber(num) {
 	this.position = num;
 	this.$pos.html(num);
 	this.save();
 	//call sql too, using the hash
-    }
+	}
+*/
     isHeader() {
 	return this.$sectionQ.prop("checked")
     }
     Delete() {
-	rows = rows.filter((a)=>a.position != this.position);
+	//FIX? Maybe just filter elements which aren't this one, eh?
+	rows = rows.filter((a)=>a.hash != this.hash);
 	this.$w.remove();
 	this.save(true);
     }
     setup(item) {
 	this.$sectionQ.prop("checked",item.name===null)
 	if(item.hash) {this.hash = item.hash;}
-	if(item.section) {this.$section.val(item.section);}
-	if(item.title) {this.$title.val(item.title);}
-	if(item.name) {this.$name.val(item.name);}
-	if(item.email) {this.$email.val(item.email);}
-	if(item.position) {this.position=item.position; this.$pos.html(this.position);}
+	if(item.section) {this.section = item.section;
+			  this.$section.val(item.section);}
+	if(item.title) {this.title = item.title;
+			this.$title.val(item.title);}
+	if(item.name) {this.name = item.name;
+		       this.$name.val(item.name);}
+	if(item.email) {this.email = item.email;
+			this.$email.val(item.email);}
+/*	if(item.position) {
+	    this.position=item.position;
+	    this.$pos.html(this.position);
+	    }
+*/
+    }
+    json() {
+	let name = this.$name.val();
+	
+	let result = {
+	    "section": this.$section.val(),
+//	    "position": this.position,
+	    "title": this.$title.val(),
+	    "name": name==""?null:this.$name.val(),
+	    "phone": null,
+	    "email": this.$email.val(),
+	    "hash": this.hash
+	};
+	return result;
     }
     save(del=false) {
 	let item = {section: this.$section.val(),
 		    hash: this.hash,
-		    position: this.position,
+//		    position: this.position,
 		    name: (this.isHeader()?null:this.$name.val()),
 		    title: this.$title.val(),
 		    email: this.$email.val()
@@ -77,15 +101,20 @@ class Row {
 	if(del) {
 	    item.del = true;
 	}
+	let staves = [];
+	for (let row of rows) {
+	    staves.push(row.json());
+	}
 	$.ajax({
-	    url: "savestaff",
+	    url: "savenewstaff", //"savestaff",
 	    type: "POST",
 	    contentType: "application/json",
-	    data: JSON.stringify(item),
+	    data: JSON.stringify(staves), //JSON.stringify(item),
 	    dataType: 'json',
 	    success: (x) => {
 		$saving.addClass("show");
-		setTimeout(()=>{$saving.removeClass("show")},500);
+		setTimeout(()=>{$saving.removeClass("show")},2000);
+		console.debug("Saved",x);
 	    },
 	    error: (x)=>{console.error("Error: ",x);}
 	});
@@ -112,6 +141,7 @@ function Move(e,w) {
 }
 function InsertBefore(which) {
     let idx = rows.indexOf(which);
+    /*
     let pos2 = which.position;
     let pos1;
     if(idx==0) {
@@ -120,13 +150,14 @@ function InsertBefore(which) {
 	pos1 = rows[idx-1].position;
     }
     let newpos = Math.round((pos1+pos2)/2);
-    let newrow = new Row($root,newpos);
+    */
+    let newrow = new Row($root,0);
     rows.splice(idx,0,newrow);
     newrow.$w.insertBefore(which.$w);
     newrow.$title.focus();
-    if(newpos==pos1 || newpos==pos2) {
-	Renumber();
-    }
+//    if(newpos==pos1 || newpos==pos2) {
+//	Renumber();
+//    }
 }
 function Clear() {
     $("#staffPanel #info input").val("");
@@ -180,13 +211,15 @@ function Populate(data) {
 	row.setup(item);
     }
 }
-function Renumber() {
+/*
+  function Renumber() {
     let i=numberspacing;
     for(let row of rows) {
 	row.renumber(i);
 	i+=numberspacing;
     }
-}
+    }
+    */
 let $root;
 let rows = [];
 function AddRow(pos) {

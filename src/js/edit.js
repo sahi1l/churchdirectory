@@ -1,4 +1,4 @@
-function Click(mode) {
+export function Click(mode) {
     console.debug("Click! ",mode)
     $("section.active").removeClass("active")
     $("header .mode.active").removeClass("active")

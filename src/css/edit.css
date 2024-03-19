@@ -13,3 +13,15 @@ section {
     align-items: start;
     font-weight: bold;
 }
+#logoutPanel {
+    width: 100%;
+}
+#logoutPanel>div {
+    display: flex;
+    justify-content: center;
+}
+#logoutPanel .passwordbox {
+    background-color: #faa;
+/*    border: 2px black inset;*/
+    padding: 2px;
+}
